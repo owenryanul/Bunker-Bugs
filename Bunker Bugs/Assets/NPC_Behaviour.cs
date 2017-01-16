@@ -7,20 +7,20 @@ public class NPC_Behaviour : MonoBehaviour {
     public GameObject bullet;
     float bulletTick;
     private List<GameObject> objectsInLineOfSight;
-    private GameObject closestObjectInLineOfSight;
+    
 
 	// Use this for initialization
 	void Start () {
         bulletTick = 0.1f;
         objectsInLineOfSight = new List<GameObject>();
-        closestObjectInLineOfSight = new GameObject();
-        closestObjectInLineOfSight.transform.Translate(100000, 0, 0);//position.set only affects the copy of position created by .position, not the transform of the gameobject itself.
+        //position.set only affects the copy of position created by .position, not the transform of the gameobject itself.
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
         //{SpotEnemy} Fires a Linecast that detects all objects to the right of the npc, then determines whether a solid tile or an enemy is closer, allowing the npc to determine whether or not to fire
+        GameObject closestObjectInLineOfSight = null;
         RaycastHit2D[] allTargets = Physics2D.LinecastAll(this.gameObject.transform.position, new Vector2(-100000, this.gameObject.transform.position.y));
         foreach (RaycastHit2D atarget in allTargets)
         {
@@ -28,7 +28,7 @@ public class NPC_Behaviour : MonoBehaviour {
             {
                 if(closestObjectInLineOfSight == null)
                 {
-                    //catches the object being destroyed
+                    //intialise closestObjectInLineOfSight to be the first enemy or solidtile in the array
                     closestObjectInLineOfSight = atarget.transform.gameObject;
                 }
                 else if (Mathf.Abs(atarget.transform.position.x - this.gameObject.transform.position.x) < Mathf.Abs(closestObjectInLineOfSight.transform.position.x - this.gameObject.transform.position.x))
