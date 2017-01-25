@@ -41,7 +41,7 @@ public class NPC_Behaviour : MonoBehaviour {
         //{/SpotEnemy}
 
         //{Shoot}
-        if(closestObjectInLineOfSight.tag == "Enemy")
+        if(closestObjectInLineOfSight != null && closestObjectInLineOfSight.tag == "Enemy")
         {
             if (bulletTick <= 0)
             {

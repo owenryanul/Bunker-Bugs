@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Enemy_Behaviour : MonoBehaviour {
 
     private bool isJumping;
     private float timeLeftInJump;
+    private List<GameObject> blockingTiles;
 
 	// Use this for initialization
 	void Start () {
         isJumping = false;
         timeLeftInJump = 0.2f;
+        blockingTiles = new List<GameObject>();
 	}
 	
 	// Update is called once per frame
@@ -25,11 +28,15 @@ public class Enemy_Behaviour : MonoBehaviour {
         if(isJumping)
         {
             executeEnemyJump();
-            this.gameObject.transform.Translate(1f * Time.deltaTime, 0, 0);
         }
-        else
+
+        if(!isMovementBlocked()) 
         {
             this.gameObject.transform.Translate(1f * Time.deltaTime, 0, 0);
+        }
+        else if(!isJumping && isGrounded())
+        {
+            isJumping = true;
         }
 	}
 
@@ -62,11 +69,15 @@ public class Enemy_Behaviour : MonoBehaviour {
             Destroy(other.gameObject);
             KillEnemy();
         }
-        else if (!isJumping && (other.gameObject.tag == "SolidTile" || other.gameObject.tag == "WindowTile") && other.transform.position.y >= this.transform.position.y && other.transform.position.x > this.transform.position.x)
+        else if ((other.gameObject.tag == "SolidTile" || other.gameObject.tag == "WindowTile") && other.transform.position.y >= this.transform.position.y && other.transform.position.x > this.transform.position.x)
         {
-            print("Jumping with " + other.gameObject.name + " (" + other.transform.position.y + " > myY " + this.transform.position.y + " , " + other.transform.position.x + " > myX " + this.transform.position.x + " )");
-            isJumping = true;
+            
         }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        
     }
 
     void executeEnemyJump()
@@ -74,13 +85,27 @@ public class Enemy_Behaviour : MonoBehaviour {
         if (timeLeftInJump > 0)
         {
             timeLeftInJump -= Time.deltaTime;
-            this.transform.Translate(0, 10 * Time.deltaTime, 0);
+            this.transform.Translate(0, 12 * Time.deltaTime, 0);
         }
         else
         {
             isJumping = false;
             timeLeftInJump = 0.2f;
         }
+    }
+
+    bool isMovementBlocked()
+    {
+          //detects if there are any solid tiles to the right of the enemy, by casting a ray from near the bottom of the sprite right.
+            RaycastHit2D[] forwardRay = Physics2D.LinecastAll(this.gameObject.transform.position - new Vector3(0, 0.3f, 0), new Vector3(this.gameObject.transform.position.x + 0.5f, this.gameObject.transform.position.y - 0.3f, 0));
+            foreach (RaycastHit2D atarget in forwardRay)
+            {
+                if (atarget.transform.gameObject.tag == "WindowTile" || atarget.transform.gameObject.tag == "SolidTile")
+                {
+                    return true;
+                }
+            }
+            return false;
     }
 
     //Use to run behaviour that triggers when the enemy is killed. e.g. enemy explodes on death.
