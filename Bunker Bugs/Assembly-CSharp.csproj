@@ -50,6 +50,7 @@
      <Compile Include="Assets\NPC_Behaviour.cs" />
      <Compile Include="Assets\ScrollCamera.cs" />
      <Compile Include="Assets\UI_StartWave.cs" />
+     <Compile Include="Assets\animateSidebar.cs" />
      <Compile Include="Assets\swapToPhase.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
