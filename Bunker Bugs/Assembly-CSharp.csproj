@@ -46,8 +46,11 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\BulletMove.cs" />
+     <Compile Include="Assets\ClickOnStuff.cs" />
      <Compile Include="Assets\Enemy_Behaviour.cs" />
+     <Compile Include="Assets\GhostLogic.cs" />
      <Compile Include="Assets\NPC_Behaviour.cs" />
+     <Compile Include="Assets\PlacingTiles.cs" />
      <Compile Include="Assets\ScrollCamera.cs" />
      <Compile Include="Assets\UI_StartWave.cs" />
      <Compile Include="Assets\animateSidebar.cs" />
