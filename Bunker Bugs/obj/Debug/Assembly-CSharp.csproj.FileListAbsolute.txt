@@ -19,3 +19,11 @@ C:\Users\horin_000\Desktop\Projects\Unity Work\Bunker Bugs\Temp\bin\Debug\UnityE
 C:\Users\horin_000\Desktop\Projects\Unity Work\Bunker Bugs\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 C:\Users\horin_000\Desktop\Projects\Unity Work\Bunker Bugs\obj\Debug\Assembly-CSharp.dll
 C:\Users\horin_000\Desktop\Projects\Unity Work\Bunker Bugs\obj\Debug\Assembly-CSharp.pdb
+C:\Users\horin_000\Desktop\Projects\Unity Work\Bunker Bugs\Temp\bin\Debug\UnityEngine.Analytics.dll
+C:\Users\horin_000\Desktop\Projects\Unity Work\Bunker Bugs\Temp\bin\Debug\UnityEngine.HoloLens.dll
+C:\Users\horin_000\Desktop\Projects\Unity Work\Bunker Bugs\Temp\bin\Debug\UnityEngine.PlaymodeTestsRunner.dll
+C:\Users\horin_000\Desktop\Projects\Unity Work\Bunker Bugs\Temp\bin\Debug\UnityEngine.VR.dll
+C:\Users\horin_000\Desktop\Projects\Unity Work\Bunker Bugs\Temp\bin\Debug\UnityEngine.PlaymodeTestsRunner.xml
+C:\Users\horin_000\Desktop\Projects\Unity Work\Bunker Bugs\Temp\bin\Debug\UnityEngine.Analytics.xml
+C:\Users\horin_000\Desktop\Projects\Unity Work\Bunker Bugs\Temp\bin\Debug\UnityEngine.HoloLens.xml
+C:\Users\horin_000\Desktop\Projects\Unity Work\Bunker Bugs\Temp\bin\Debug\UnityEngine.VR.xml

@@ -1,7 +1,7 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{3179E8BE-21BD-5166-58FE-6AC35A36977C}") = "Bunker Bugs", "Assembly-CSharp.csproj", "{C530B493-4D19-33B1-7102-A71F84D58858}"
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bunker Bugs", "Assembly-CSharp.csproj", "{C530B493-4D19-33B1-7102-A71F84D58858}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -16,8 +16,7 @@ public class Enemy_Behaviour : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        
+	void Update () {    
         //{Gravity}
         if(!isGrounded())
         {
@@ -40,27 +39,7 @@ public class Enemy_Behaviour : MonoBehaviour {
         }
 	}
 
-    //detects if there are any solid tiles below the enemy, by making two raycasts, 1 slightly in from the right edge of the enemy and another slightly in from the left edge of the enemy.
-    bool isGrounded()
-    {
-        RaycastHit2D[] rightGroundRay = Physics2D.LinecastAll(this.gameObject.transform.position + new Vector3(0.2f, 0, 0), new Vector3(this.gameObject.transform.position.x + 0.2f, this.gameObject.transform.position.y - 0.5f, 0));
-        foreach (RaycastHit2D atarget in rightGroundRay)
-        {
-            if (atarget.transform.gameObject.tag == "WindowTile" || atarget.transform.gameObject.tag == "SolidTile")
-            {
-                return true;
-            }
-        }
-        RaycastHit2D[] leftGroundRay = Physics2D.LinecastAll(this.gameObject.transform.position - new Vector3(0.2f, 0, 0), new Vector3(this.gameObject.transform.position.x - 0.2f, this.gameObject.transform.position.y - 0.5f, 0));
-        foreach (RaycastHit2D atarget in leftGroundRay)
-        {
-            if (atarget.transform.gameObject.tag == "WindowTile" || atarget.transform.gameObject.tag == "SolidTile")
-            {
-                return true;
-            }
-        }
-        return false;
-    }
+    
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -68,10 +47,6 @@ public class Enemy_Behaviour : MonoBehaviour {
         {
             Destroy(other.gameObject);
             KillEnemy();
-        }
-        else if ((other.gameObject.tag == "SolidTile" || other.gameObject.tag == "WindowTile") && other.transform.position.y >= this.transform.position.y && other.transform.position.x > this.transform.position.x)
-        {
-            
         }
     }
 
@@ -82,7 +57,7 @@ public class Enemy_Behaviour : MonoBehaviour {
 
     void executeEnemyJump()
     {
-        if (timeLeftInJump > 0)
+        if (timeLeftInJump > 0 && !isBlockedByCeiling())
         {
             timeLeftInJump -= Time.deltaTime;
             this.transform.Translate(0, 12 * Time.deltaTime, 0);
@@ -100,12 +75,56 @@ public class Enemy_Behaviour : MonoBehaviour {
             RaycastHit2D[] forwardRay = Physics2D.LinecastAll(this.gameObject.transform.position - new Vector3(0, 0.3f, 0), new Vector3(this.gameObject.transform.position.x + 0.5f, this.gameObject.transform.position.y - 0.3f, 0));
             foreach (RaycastHit2D atarget in forwardRay)
             {
-                if (atarget.transform.gameObject.tag == "WindowTile" || atarget.transform.gameObject.tag == "SolidTile")
-                {
+                if (atarget.transform.gameObject.tag == "WindowTile" || atarget.transform.gameObject.tag == "SolidTile" || atarget.transform.gameObject.tag == "TerrianTile")
+            {
                     return true;
                 }
             }
             return false;
+    }
+
+    //detects if there are any solid tiles below the enemy, by making two raycasts, 1 slightly in from the right edge of the enemy and another slightly in from the left edge of the enemy.
+    bool isGrounded()
+    {
+        RaycastHit2D[] rightGroundRay = Physics2D.LinecastAll(this.gameObject.transform.position + new Vector3(0.2f, 0, 0), new Vector3(this.gameObject.transform.position.x + 0.2f, this.gameObject.transform.position.y - 0.5f, 0));
+        foreach (RaycastHit2D atarget in rightGroundRay)
+        {
+            if (atarget.transform.gameObject.tag == "WindowTile" || atarget.transform.gameObject.tag == "SolidTile" || atarget.transform.gameObject.tag == "TerrianTile")
+            {
+                return true;
+            }
+        }
+        RaycastHit2D[] leftGroundRay = Physics2D.LinecastAll(this.gameObject.transform.position - new Vector3(0.2f, 0, 0), new Vector3(this.gameObject.transform.position.x - 0.2f, this.gameObject.transform.position.y - 0.5f, 0));
+        foreach (RaycastHit2D atarget in leftGroundRay)
+        {
+            if (atarget.transform.gameObject.tag == "WindowTile" || atarget.transform.gameObject.tag == "SolidTile" || atarget.transform.gameObject.tag == "TerrianTile")
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //detects if there are any solid tiles below the enemy, by making two raycasts, 1 slightly in from the right edge of the enemy and another slightly in from the left edge of the enemy.
+    bool isBlockedByCeiling()
+    {
+        RaycastHit2D[] rightUpRay = Physics2D.LinecastAll(this.gameObject.transform.position + new Vector3(0.2f, 0, 0), new Vector3(this.gameObject.transform.position.x + 0.2f, this.gameObject.transform.position.y + 0.5f, 0));
+        foreach (RaycastHit2D atarget in rightUpRay)
+        {
+            if (atarget.transform.gameObject.tag == "WindowTile" || atarget.transform.gameObject.tag == "SolidTile" || atarget.transform.gameObject.tag == "TerrianTile")
+            {
+                return true;
+            }
+        }
+        RaycastHit2D[] leftUpRay = Physics2D.LinecastAll(this.gameObject.transform.position - new Vector3(0.2f, 0, 0), new Vector3(this.gameObject.transform.position.x - 0.2f, this.gameObject.transform.position.y + 0.5f, 0));
+        foreach (RaycastHit2D atarget in leftUpRay)
+        {
+            if (atarget.transform.gameObject.tag == "WindowTile" || atarget.transform.gameObject.tag == "SolidTile" || atarget.transform.gameObject.tag == "TerrianTile")
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     //Use to run behaviour that triggers when the enemy is killed. e.g. enemy explodes on death.

@@ -24,11 +24,11 @@ public class NPC_Behaviour : MonoBehaviour {
         RaycastHit2D[] allTargets = Physics2D.LinecastAll(this.gameObject.transform.position, new Vector2(-100000, this.gameObject.transform.position.y));
         foreach (RaycastHit2D atarget in allTargets)
         {
-            if (atarget.transform.gameObject.tag == "Enemy" || atarget.transform.gameObject.tag == "SolidTile")
+            if (atarget.transform.gameObject.tag == "Enemy" || atarget.transform.gameObject.tag == "SolidTile" || atarget.transform.gameObject.tag == "TerrianTile")
             {
                 if(closestObjectInLineOfSight == null)
                 {
-                    //intialise closestObjectInLineOfSight to be the first enemy or solidtile in the array
+                    //intialise closestObjectInLineOfSight to be the first enemy or solidtile or TerrianTile in the array
                     closestObjectInLineOfSight = atarget.transform.gameObject;
                 }
                 else if (Mathf.Abs(atarget.transform.position.x - this.gameObject.transform.position.x) < Mathf.Abs(closestObjectInLineOfSight.transform.position.x - this.gameObject.transform.position.x))

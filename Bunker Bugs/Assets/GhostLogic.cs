@@ -66,7 +66,7 @@ public class GhostLogic : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.tag == "SolidTile" || col.tag == "WindowTile" || col.tag == "NPC" || col.tag == "Enemy" || col.tag == "Drill")
+        if(col.tag == "SolidTile" || col.tag == "TerrianTile" || col.tag == "WindowTile" || col.tag == "NPC" || col.tag == "Enemy" || col.tag == "Drill")
         {
             numberOfBlockingCollisions++;
         }
@@ -74,7 +74,7 @@ public class GhostLogic : MonoBehaviour {
 
     void OnTriggerExit2D(Collider2D col)
     {
-        if (col.tag == "SolidTile" || col.tag == "WindowTile" || col.tag == "NPC" || col.tag == "Enemy" || col.tag == "Drill")
+        if (col.tag == "SolidTile" || col.tag == "TerrianTile" || col.tag == "WindowTile" || col.tag == "NPC" || col.tag == "Enemy" || col.tag == "Drill")
         {
             numberOfBlockingCollisions--;
         } 

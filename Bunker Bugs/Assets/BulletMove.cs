@@ -27,7 +27,7 @@ public class BulletMove : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag == "SolidTile")
+        if(other.tag == "SolidTile" || other.tag == "TerrianTile")
         {
             Destroy(this.gameObject);
         }
